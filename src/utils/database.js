@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const { PostModel } = require("../models/PostModel");
 
-
 async function dbConnect() {
     let databaseUrl =
         process.env.DATABASE_URL ||
@@ -10,6 +9,11 @@ async function dbConnect() {
     await mongoose.connect(databaseUrl);
 }
 
+async function dbDisconnect() {
+    await mongoose.connection.close();
+}
+
 module.exports = {
     dbConnect,
+    dbDisconnect,
 };
