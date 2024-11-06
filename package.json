@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
-    "seed": "node src/utils/crud/seeding.js"
+    "seed": "node src/utils/crud/seeding.js",
+    "db:drop": "node src/utils/crud/dropping.js",
+    "db:drop-and-seed": "npm run db:drop && npm run seed"
   },
   "keywords": [],
   "author": "",
