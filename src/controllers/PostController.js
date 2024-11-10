@@ -1,11 +1,19 @@
 const express = require("express");
 
 const { PostModel } = require("../models/PostModel");
-const { findOnePost } = require("../utils/crud/PostCrud");
+const { findOnePost, findManyPosts } = require("../utils/crud/PostCrud");
 
 const router = express.Router();
 
-router.get("/:postId", async (request, response) => {
+router.get("/all", async (request, response) => {
+    let result = await findManyPosts({});
+
+    response.json({
+        data: result,
+    });
+});
+
+router.get("/search/:postId", async (request, response) => {
     let result = await findOnePost({ _id: request.params.postId });
 
     response.json({
@@ -13,5 +21,14 @@ router.get("/:postId", async (request, response) => {
     });
 });
 
+router.get("/query", async (request, response) => {
+    let query = request.body.query;
 
-module.exports = router
+    let result = await findOnePost(query);
+
+    response.json({
+        data: result,
+    });
+});
+
+module.exports = router;
