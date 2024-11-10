@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { LocalizedContentSchema } = require("./LocalizedContent");
 
 const PostSchema = new mongoose.Schema({
     title: {
@@ -7,7 +8,7 @@ const PostSchema = new mongoose.Schema({
         minLength: 4,
         trim: true,
     },
-    content: String,
+    content: [LocalizedContentSchema],
     date: {
         type: Date,
         default: Date.now
