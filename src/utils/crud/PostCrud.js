@@ -1,18 +1,25 @@
 const { PostModel } = require("../../models/PostModel");
 
-
 async function createPost(title, content = null) {
     let result = await PostModel.create({
         title: title,
-        content: content
+        content: content,
     });
 
     return result;
 }
 
-async function findOnePost() {}
+async function findOnePost(query) {
+    let result = await PostModel.findOne(query);
 
-async function findManyPosts() {}
+    return result;
+}
+
+async function findManyPosts(query) {
+    let result = await PostModel.find(query);
+
+    return result;
+}
 
 async function updateOnePost() {}
 
