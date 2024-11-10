@@ -1,4 +1,5 @@
 const { PostModel } = require("../../models/PostModel");
+const { UserModel } = require("../../models/UserModel")
 
 async function createPost(title, content = null, authorId) {
     let result = await PostModel.create({
@@ -11,7 +12,7 @@ async function createPost(title, content = null, authorId) {
 }
 
 async function findOnePost(query) {
-    let result = await PostModel.findOne(query);
+    let result = await PostModel.findOne(query).populate("author");
 
     return result;
 }
