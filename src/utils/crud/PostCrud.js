@@ -1,9 +1,10 @@
 const { PostModel } = require("../../models/PostModel");
 
-async function createPost(title, content = null) {
+async function createPost(title, content = null, authorId) {
     let result = await PostModel.create({
         title: title,
         content: content,
+        author: authorId
     });
 
     return result;

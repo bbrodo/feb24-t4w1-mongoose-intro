@@ -1,10 +1,12 @@
 const { dbConnect, dbDisconnect } = require("../database");
 const { createPost } = require("./PostCrud");
+const { createUser } = require("./UserCrud");
 
-require("dotenv").config()
+
 
 async function seed() {
-    await createPost("Example title", "Example Content");
+    let newUser = await createUser("brodey", true, "brodey880@gmail.com")
+    await createPost("Example title", "Example Content", newUser.id);
     console.log("Seeding completed, disconnecting")
     await dbDisconnect();
 }
